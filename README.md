@@ -55,6 +55,6 @@ fn main() {
 
 ## License
 
-[MIT](https://github.com/ziyasal/natura/blob/main/LICENSE)
+[UNLICENSE](https://github.com/ziyasal/pmecs/blob/main/LICENSE)
 
 > _This crate is developed to be part of Λ.R.Ξ.N.Λ 2D game engine._
