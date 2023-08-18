@@ -1,6 +1,13 @@
 # pmecs
 Poor man's Entity Component System
 
+## ECS 101
+- **Entities**: A simple identifier for game objects.
+- **Components**: Data containers associated with entities.
+- **Systems**: Logic units that operate on entities with certain component combinations.
+- **World**: Contains all entities and components.
+- **Events**: Messages or data that systems can emit or listen for.
+
 ## Getting started
 
 ```rust
