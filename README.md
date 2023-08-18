@@ -3,7 +3,7 @@ Poor man's Entity Component System
 
 ## Getting started
 
-```
+```rust
 use pmecs::{Entity, World};
 
 #[derive(Clone, Copy)]
