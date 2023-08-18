@@ -10,7 +10,7 @@ Poor man's Entity Component System
 
 
 ## Heads up
-⚠️ Please consider using established ECS libraries like the following as they offer optimized storage, efficient querying mechanisms, and a host of other features out of the box.
+⚠️ Please consider using established ECS libraries like one of the following as they offer optimized storage, efficient querying mechanisms, and a host of other features out of the box.
 - [`specs`](https://crates.io/crates/specs)
 - [`legion`](https://crates.io/crates/legion)
 - [`hecs`](https://crates.io/crates/hecs)
