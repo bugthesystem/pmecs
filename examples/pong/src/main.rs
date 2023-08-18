@@ -11,9 +11,7 @@ use pmecs::{Entity, World};
 
 
 const SCREEN_WIDTH: i32 = 80;
-// Assuming screen width
 const SCREEN_HEIGHT: i32 = 24;
-// Assuming screen height
 const PADDLE_WIDTH: i32 = 1;
 const PADDLE_HEIGHT: i32 = 5;
 
@@ -49,20 +47,20 @@ fn move_ball_system(world: &mut World, ball: Entity, left_paddle: Entity, right_
         y: ball_pos.y + ball_vel.dy,
     };
 
-    // Collision with top and bottom edges
+    // check collision with top and bottom edges
     let mut new_vel = ball_vel;
     if new_pos.y <= 0 || new_pos.y >= SCREEN_HEIGHT - 1 {
         new_vel.dy = -new_vel.dy;
     }
 
-    // check collision with left paddle
+    // check collision with the left paddle
     if new_pos.x == left_paddle_pos.x + PADDLE_WIDTH &&
         new_pos.y >= left_paddle_pos.y &&
         new_pos.y <= left_paddle_pos.y + PADDLE_HEIGHT {
         new_vel.dx = -new_vel.dx;
     }
 
-    // check collision with right paddle
+    // check collision with the right paddle
     if new_pos.x == right_paddle_pos.x - PADDLE_WIDTH &&
         new_pos.y >= right_paddle_pos.y &&
         new_pos.y <= right_paddle_pos.y + PADDLE_HEIGHT {
@@ -86,10 +84,10 @@ fn move_ball_system(world: &mut World, ball: Entity, left_paddle: Entity, right_
 fn render_system(world: &World, ball: Entity, left_paddle: Entity, right_paddle: Entity) {
     let mut stdout = stdout();
 
-    // Clear the screen
+    // clear the screen
     queue!(stdout, Clear(ClearType::All)).unwrap();
 
-    // Render the ball
+    // render the ball
     if let Some(pos_guard) = world.get_component::<Position>(ball) {
         let pos_storage = &*pos_guard;
         if let Some(ball_pos) = pos_storage.get(&ball) {
@@ -98,7 +96,7 @@ fn render_system(world: &World, ball: Entity, left_paddle: Entity, right_paddle:
         }
     }
 
-    // Render the left paddle
+    // render the left paddle
     if let Some(pos_guard) = world.get_component::<Position>(left_paddle) {
         let pos_storage = &*pos_guard;
         if let Some(paddle_pos) = pos_storage.get(&left_paddle) {
@@ -109,7 +107,7 @@ fn render_system(world: &World, ball: Entity, left_paddle: Entity, right_paddle:
         }
     }
 
-    // Render the right paddle
+    // render the right paddle
     if let Some(pos_guard) = world.get_component::<Position>(right_paddle) {
         let pos_storage = &*pos_guard;
         if let Some(paddle_pos) = pos_storage.get(&right_paddle) {
