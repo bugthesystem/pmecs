@@ -1,6 +1,7 @@
 use std::any::{Any, TypeId};
 use std::collections::HashMap;
 use std::sync::{RwLock, RwLockReadGuard, RwLockWriteGuard};
+use std::sync::atomic::{AtomicUsize, Ordering};
 
 pub type Entity = usize;
 
@@ -58,25 +59,22 @@ impl Storage {
 }
 
 pub struct World {
-    next_entity: Entity,
+    next_entity: AtomicUsize,
     storage: Storage,
-    current_id: usize,
 }
 
 
 impl World {
     pub fn new() -> Self {
         World {
-            next_entity: 0,
+            next_entity: AtomicUsize::new(0),
             storage: Storage::new(),
-            current_id:0,
         }
     }
 
     pub fn create_entity(&mut self) -> Entity {
-        let entity = self.next_entity;
-        self.next_entity += 1;
-        entity
+        let return_val = self.next_entity.fetch_add(1, Ordering::Relaxed);
+        return_val
     }
 
     pub fn add_component<T: 'static + Send + Sync>(&mut self, entity: Entity, component: T) {
